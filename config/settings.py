@@ -66,6 +66,7 @@ INSTALLED_APPS = [
     'tasks',
     'users',
     'rest_framework_simplejwt',
+    'drf_spectacular',
     
 ]
 
@@ -187,4 +188,24 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10,
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+    
 } 
+
+SPECTACULAR_SETTINGS = {
+"TITLE": "Task Manager API",
+"DESCRIPTION": "API documentation for the Task Manager project.",
+"VERSION": "1.0.0",
+"SERVE_INCLUDE_SCHEMA": False,
+"COMPONENTS": {
+"securitySchemes": {
+"BearerAuth": {
+"type": "http",
+"scheme": "bearer",
+"bearerFormat": "JWT",
+}
+}
+},
+"SECURITY": [{"BearerAuth": []}],
+}
+
